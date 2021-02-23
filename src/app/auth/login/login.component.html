@@ -31,6 +31,9 @@
               </div>
             </div>
           </div>
+          <div class="form-group" *ngIf="session">
+              <span class="text-danger">Credenciales no validas!</span>
+          </div>
           <button type="submit" class="btn btn-danger btn-block" [disabled]="!loginForm.valid">Enter</button>
         </form>
         <div class="form-group mt-2">

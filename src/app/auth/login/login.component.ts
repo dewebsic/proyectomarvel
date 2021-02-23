@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  public session:boolean = false;
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   get email() { return this.loginForm.get('email')}
@@ -25,8 +26,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onLogin(){
     this.authService.login(
@@ -34,7 +34,11 @@ export class LoginComponent implements OnInit {
       this.loginForm.value.password
     ).then(resp => {
 
-
+      if(!resp){
+        this.session = true;
+      }else{
+        this.session = false;
+      }
 
     }).catch(err => {
       this.message('error',false);
@@ -49,9 +53,9 @@ export class LoginComponent implements OnInit {
   message(message: string,icon: boolean) {
 
     if(icon){
-      Swal.fire(message, 'Aceptar!', 'success');
+      Swal.fire(message, 'Aceptar!', 'success').then(r => {});
     }else{
-      Swal.fire(message, 'Aceptar!', 'warning');
+      Swal.fire(message, 'Aceptar!', 'warning').then(r => {});
     }
 
   }

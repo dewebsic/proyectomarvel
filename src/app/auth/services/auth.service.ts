@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { User } from 'firebase';
+import {Injectable} from '@angular/core';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {User} from 'firebase';
 import {first} from 'rxjs/operators';
 
 
@@ -18,8 +18,7 @@ export class AuthService {
   async login(email: string, password: string){
     try{
 
-      const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      localStorage.setItem('email',result.user.email);
+      return await this.afAuth.auth.signInWithEmailAndPassword(email, password);
 
     }catch (err){
       console.error('error ', err);
