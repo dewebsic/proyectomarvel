@@ -1,0 +1,8 @@
+.logo-box{
+  padding: 16px;
+}
+.logo-box img {
+  display: block;
+  width: 40%;
+  margin: 0 auto;
+}
