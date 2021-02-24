@@ -9,10 +9,11 @@ import { LayoutModule } from '@angular/cdk/layout';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 
-
 import {HomeModule} from './home/home.module';
 import {NavbarComponent} from './shared/components/navbar/navbar.component';
 import {environment} from '../environments/environment';
+import {CanUserGuard} from './auth/guards/can-user.guard';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {environment} from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [CanUserGuard,AngularFirestore],
   exports: [
   ],
   bootstrap: [AppComponent]

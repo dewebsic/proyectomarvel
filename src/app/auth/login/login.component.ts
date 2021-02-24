@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       }else{
         this.session = false;
 
-        if(resp.user.emailVerified){
+        if(resp.emailVerified){
             //redirect
             this.router.navigate(['/home']).then(resp => {
             }).catch(err => {
