@@ -47,4 +47,8 @@ export class AuthService {
   getCurrentUser(){
     return this.afAuth.authState.pipe(first()).toPromise();
   }
+
+  async sendVerificationEmail():Promise<void> {
+    return (await this.afAuth.auth.currentUser).sendEmailVerification();
+  }
 }

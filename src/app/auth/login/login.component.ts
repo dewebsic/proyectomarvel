@@ -38,6 +38,25 @@ export class LoginComponent implements OnInit {
         this.session = true;
       }else{
         this.session = false;
+
+        if(resp.user.emailVerified){
+            //redirect
+            this.router.navigate(['/home']).then(resp => {
+            }).catch(err => {
+              this.message('error',false);
+              console.log('error->', err)
+            });
+
+        }else{
+
+          //redirect
+          this.router.navigate(['/login/verification-email']).then(resp => {
+          }).catch(err => {
+            this.message('error',false);
+            console.log('error->', err)
+          });
+
+        }
       }
 
     }).catch(err => {
