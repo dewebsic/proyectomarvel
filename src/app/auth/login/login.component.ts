@@ -65,6 +65,20 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  onGoogleLogin(){
+      this.authService.loginGoogle().then(resp => {
+
+        //redirect
+        this.router.navigate(['/home']).then(resp => {
+        }).catch(err => {
+          this.message('error',false);
+          console.log('error->', err)
+        });
+
+      }).catch(err => {
+          console.log('error->',err);
+      });
+  }
   /**
    *
    * METODO PARA MOSTRAR UN MENSAJE EN MODAL
