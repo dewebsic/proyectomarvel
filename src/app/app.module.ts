@@ -8,13 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
-import { HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {HomeModule} from './home/home.module';
 import {NavbarComponent} from './shared/components/navbar/navbar.component';
 import {environment} from '../environments/environment';
 import {CanUserGuard} from './auth/guards/can-user.guard';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {InterceptorService} from './shared/services/interceptor.service';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -31,10 +33,13 @@ import {AngularFirestore} from '@angular/fire/firestore';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxSpinnerModule
 
   ],
-  providers: [CanUserGuard,AngularFirestore],
+  providers: [CanUserGuard,AngularFirestore,
+      {provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi:true}
+    ],
   exports: [
   ],
   bootstrap: [AppComponent]
