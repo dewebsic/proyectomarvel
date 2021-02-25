@@ -12,6 +12,11 @@
           <span class="sr-only">(current)</span>
         </a>
       </li>
+      <li class="nav-item active" *ngIf="user$ | async as user">
+        <a class="nav-link" [routerLink]="['/characters']">Characters
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
     </ul>
     <ul class="navbar-nav mr-right" *ngIf="user$ | async as user else login">
       <li class="nav-item active">

@@ -6,6 +6,7 @@ import { CharactersComponent } from './characters.component';
 import { CharacterComponent } from './components/character/character.component';
 import {MatButtonModule, MatCardModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatCardModule,
     FlexLayoutModule,
     MatButtonModule,
+    ReactiveFormsModule,
   ]
 })
 export class CharactersModule { }

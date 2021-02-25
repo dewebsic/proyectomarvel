@@ -21,4 +21,9 @@ export class CharactersService {
      return this.httpClient.get<AllCharacters[]>(this.URL_API+
       `characters?ts=1&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}`).pipe(map((data: any) => data.data.results));
   }
+
+  getSearchCharacters(search: string): Observable<AllCharacters[] | null>{
+    return this.httpClient.get<AllCharacters[]>(this.URL_API+
+      `characters?&ts=1&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}&nameStartsWith=${search}`).pipe(map((data: any) => data.data.results));
+  }
 }
