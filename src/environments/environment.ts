@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  api_key: 'f66e500afad430f0b254d5c6c7053240',
-  api_url: 'https://gateway.marvel.com:443/v1/public/',
+  hash: 'f66e500afad430f0b254d5c6c7053240',
+  public_key: '3d9d760ca0b08c91db8459407159a917',
+  api_url: `https://gateway.marvel.com:443/v1/public/`,
   firebaseConfig: {
     apiKey:  'AIzaSyCaguN4OEQbpmFxABmo_xqXE96-tvrlBvc',
     authDomain: 'marvel-d9f32.firebaseapp.com',
