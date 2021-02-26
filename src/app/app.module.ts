@@ -17,11 +17,15 @@ import {CanUserGuard} from './auth/guards/can-user.guard';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {InterceptorService} from './shared/services/interceptor.service';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,36 @@
+.banner-header{
+  background-image: url('../../../../assets/images/SkyLinefinal.png'),linear-gradient(to bottom, #163C52 0%,#4F4F47 30%,#C5752D 60%,#B7490F 80%, #2F1107 100%);;
+  background-size: cover;
+  background-position: center;
+  background-color: #f2c94d;
+  min-height: 180px;
+}
+.big{
+  font-family: ccbiffbamboom, sans-serif;
+  color: black;
+  margin: 30px 0 -1em 0;
+  text-shadow: -1px -1px yellow, 1px 1px orange, 2px 2px orange;
+  -webkit-transform: rotate(-5deg) skew(-10deg, 0);
+  -moz-transform: rotate(-5deg) skew(-10deg, 0);
+  -ms-transform: rotate(-5deg) skew(-10deg, 0);
+  -o-transform: rotate(-5deg) skew(-10deg, 0);
+  transform: rotate(-5deg) skew(-10deg, 0);
+  padding-bottom: 0px;
+  float: left;
+  width: 100%;
+}
+h1.big {
+  font-size: 150px;
+}
+
+h2.big {
+  font-size: 110px;
+}
+
+h3.big {
+  font-size: 80px;
+}
+
+h4.big {
+  font-size: 60px;
+}

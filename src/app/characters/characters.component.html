@@ -5,7 +5,7 @@
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="search..."
                      aria-label="Recipient's username" aria-describedby="basic-addon2"
-                     [formControl]="search">
+                     [formControl]="search" (keyup.enter)="onGetSearchCharacters()">
               <div class="input-group-append">
                 <button class="btn btn-dark" (click)="onGetSearchCharacters()">Search</button>
               </div>

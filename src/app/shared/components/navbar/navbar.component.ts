@@ -9,7 +9,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
   public user$: Observable<any> = this.authService.afAuth.user;
+  public title: string;
 
   constructor(private authService: AuthService,private router: Router) { }
 
