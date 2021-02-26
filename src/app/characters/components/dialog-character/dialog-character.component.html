@@ -1,7 +1,11 @@
-<div class="container" style="width: 100%">
-  <h1 mat-dialog-title class="text-dark">Character details</h1>
+<div class="container-fluid" style="width: 100%">
+  <div class="card-border">
+    <h1 mat-dialog-title class="text-dark">Character details</h1>
+  </div>
   <mat-dialog-content class="mat-typography" *ngFor="let character of data | async">
-    <h2>{{character.name | uppercase}}</h2>
+    <div class="p-5">
+      <span class="bangers">{{character.name | uppercase}}</span>
+    </div>
     <div class="row">
       <div class="col-md-5 avatar">
         <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}"  alt="">
@@ -14,7 +18,7 @@
         </ng-template>
         <div *ngFor="let url of character.urls">
             <div *ngIf="url.type == 'detail'" class="mt-3">
-              <a href="{{url.url}}" target="_blank" class="btn btn-danger btn-lg">visit the site</a>
+              <a href="{{url.url}}" target="_blank" class="btn btn-dark btn-block"><i class="fas fa-globe"></i> visit the site</a>
             </div>
         </div>
       </div>
@@ -63,6 +67,6 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close class="btn btn-danger btn-block">Close</button>
+    <button mat-button mat-dialog-close class="btn btn-danger btn-block"><i class="fas fa-times-circle"></i> Close</button>
   </mat-dialog-actions>
 </div>

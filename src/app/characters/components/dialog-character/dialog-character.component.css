@@ -5,3 +5,11 @@
 .card-info{
   min-height: 245px;
 }
+
+.bangers{
+  background-color: #F01D21;
+  font-family: 'Bangers', cursive;
+  color: #ffffff;
+  font-size: 3em;
+  padding: 15px 15px;
+}
