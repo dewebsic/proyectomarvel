@@ -4,60 +4,46 @@ export interface Character {
   "description": string,
   "modified": Date;
   "resourceURI": string,
-  "urls": [
-      {
-        "type":string,
-        "url": string,
-      }
-    ],
+  "urls": Url[],
   "thumbnail": {
     "path": string,
     "extension": string
   },
   "comics": {
-    "available": string,
+    "available": number,
     "returned": number,
-    "collectionURI": number,
-    "items": [
-      {
-        "resourceURI": number,
-        "name": number
-      }
-    ]
+    "collectionURI": string,
+    "items":  ItemCharacter[]
   },
   "stories": {
     "available": number,
-    "returned":number,
-    "collectionURI": number,
-    "items": [
-      {
-        "resourceURI": number,
-        "name": number,
-        "type": number
-      }
-    ]
+    "returned": number,
+    "collectionURI": string,
+    "items": ItemCharacter[]
   },
   "events": {
     "available": number,
     "returned": number,
-    "collectionURI": number,
-    "items": [
-      {
-        "resourceURI": number,
-        "name": number
-      }
-    ]
+    "collectionURI": string,
+    "items": ItemCharacter[]
   },
   "series": {
     "available": number,
     "returned": number,
-    "collectionURI": number,
-    "items": [
-      {
-        "resourceURI": number,
-        "name": number
-      }
-    ]
+    "collectionURI":string,
+    "items": ItemCharacter[]
   }
+}
+
+export interface ItemCharacter{
+
+  "resourceURI": string,
+  "name": string,
+  "type"? : string
+}
+
+export interface Url{
+  "type":string,
+  "url": string,
 }
 

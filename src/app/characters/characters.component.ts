@@ -10,9 +10,12 @@ import {DataService} from '../shared/services/data.service';
   templateUrl: './characters.component.html',
   styleUrls: ['./characters.component.css']
 })
-export class CharactersComponent implements OnInit , AfterContentInit{
+
+export class CharactersComponent implements OnInit, AfterContentInit{
+
   public allCharacters: Observable<AllCharacters[] | null>
   search = new FormControl('');
+
   constructor(private charactersService: CharactersService,
               private dataServices: DataService) {}
 

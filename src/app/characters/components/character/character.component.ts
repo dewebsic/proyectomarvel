@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { AllCharacters } from '../../interfaces/all-characters';
+import {DataService} from '../../../shared/services/data.service';
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',
@@ -7,7 +8,10 @@ import { AllCharacters } from '../../interfaces/all-characters';
 })
 export class CharacterComponent implements OnInit {
   @Input() character: AllCharacters;
-  constructor() { }
+  constructor(private dataService: DataService) { }
   ngOnInit() {}
 
+  onIdCharacter(id: number){
+      this.dataService.id = id;
+  }
 }

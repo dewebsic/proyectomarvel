@@ -17,13 +17,18 @@ export class CharactersService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllCharacters(): Observable<AllCharacters[]>{
+  public getAllCharacters(): Observable<AllCharacters[]>{
      return this.httpClient.get<AllCharacters[]>(this.URL_API+
       `characters?ts=1&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}`).pipe(map((data: any) => data.data.results));
   }
 
-  getSearchCharacters(search: string): Observable<AllCharacters[] | null>{
+  public getSearchCharacters(search: string): Observable<AllCharacters[] | null>{
     return this.httpClient.get<AllCharacters[]>(this.URL_API+
       `characters?&ts=1&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}&nameStartsWith=${search}`).pipe(map((data: any) => data.data.results));
+  }
+
+  public getCharacter(id: number ): Observable<AllCharacters[] | null>{
+    return this.httpClient.get<AllCharacters[]>(this.URL_API+
+    `characters/${id}?&ts=1&apikey=${this.PUBLIC_KEY}&hash=${this.HASH}`).pipe(map((data: any) => data.data.results));
   }
 }

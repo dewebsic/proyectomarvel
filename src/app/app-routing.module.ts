@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CanUserGuard} from './auth/guards/can-user.guard';
+import {DetailCharacterComponent} from './characters/components/detail-character/detail-character.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'/home', pathMatch:'full'},

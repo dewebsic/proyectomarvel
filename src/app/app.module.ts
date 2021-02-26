@@ -19,6 +19,7 @@ import {InterceptorService} from './shared/services/interceptor.service';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import {MatDialogModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -38,8 +39,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     AngularFireAuthModule,
     HttpClientModule,
     FlexLayoutModule,
-    NgxSpinnerModule
-
+    NgxSpinnerModule,
+    MatDialogModule
   ],
   providers: [CanUserGuard,AngularFirestore,
       {provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi:true}
