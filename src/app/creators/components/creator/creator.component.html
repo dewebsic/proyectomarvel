@@ -1,0 +1,13 @@
+<mat-card class="bg-white">
+  <img mat-card-image src="{{creator.thumbnail.path}}.{{creator.thumbnail.extension}}" alt="{{creator.fullName}}">
+  <mat-card-title>
+    {{creator.fullName}}
+  </mat-card-title>
+  <mat-card-footer>
+    <a [routerLink]="['detail', creator.id]" fxFlex mat-flat-button color="primary">
+      <i class="fas fa-eye"></i> Details
+    </a>
+  </mat-card-footer>
+</mat-card>
+
+

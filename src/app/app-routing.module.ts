@@ -21,7 +21,8 @@ const routes: Routes = [
   },
   { path: 'comics', loadChildren: () => import('./comics/comics.module').then(m => m.ComicsModule),
     canActivate: [CanUserGuard]
-  }
+  },
+  { path: 'creators', loadChildren: () => import('./creators/creators.module').then(m => m.CreatorsModule) }
 ];
 
 @NgModule({

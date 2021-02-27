@@ -1,0 +1,23 @@
+<div fxFlex fxLayout="column">
+  <div fxLayout="row wrap">
+    <div fxFlex="grow" fxLayout="column" class="mt-5">
+      <div class="form-group col-md-6 mx-auto">
+        <router-outlet></router-outlet>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="search..."
+                 aria-label="Recipient's username" aria-describedby="basic-addon2"
+                 [formControl]="search" (keyup.enter)="onGetSearchCreators()">
+          <div class="input-group-append">
+            <button class="btn btn-dark" (click)="onGetSearchCreators()">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="25" fxFlex.md="33" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column"
+         *ngFor="let creator of allCreators" class="p-5">
+      <app-creator [creator]="creator" cdkFocusInitial></app-creator>
+    </div>
+  </div>
+</div>
+
+
