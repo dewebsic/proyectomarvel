@@ -11,14 +11,14 @@ export class SpinnerService {
   public callSpinner(){
     this.spinner.show().then(r=> {
     }).catch(err => {
-      console.log('error->',err);
+
     });
   }
 
   public stopSpinner(){
     this.spinner.hide().then(r => {
     }).catch(err => {
-      console.log('error->',err);
+
     });
   }
 }

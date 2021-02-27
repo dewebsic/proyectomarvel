@@ -13,7 +13,7 @@ import {DataService} from '../shared/services/data.service';
 
 export class CharactersComponent implements OnInit, AfterContentInit{
 
-  public allCharacters: Observable<AllCharacters[] | null>
+  public allCharacters: AllCharacters[];
   search = new FormControl('');
 
   constructor(private charactersService: CharactersService,
@@ -28,7 +28,9 @@ export class CharactersComponent implements OnInit, AfterContentInit{
   }
 
   getCharacters(){
-    this.allCharacters = this.charactersService.getAllCharacters();
+    this.charactersService.getAllCharacters().subscribe(r => {
+        this.allCharacters = r;
+    });
   }
 
   onGetSearchCharacters(){
@@ -40,6 +42,8 @@ export class CharactersComponent implements OnInit, AfterContentInit{
       searchApi = this.search.value;
     }
 
-    this.allCharacters = this.charactersService.getSearchCharacters(searchApi);
+    this.charactersService.getSearchCharacters(searchApi).subscribe(r => {
+      this.allCharacters = r;
+    });
   }
 }

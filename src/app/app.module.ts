@@ -43,7 +43,7 @@ import {MatDialogModule} from '@angular/material';
     MatDialogModule
   ],
   providers: [CanUserGuard,AngularFirestore,
-      {provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi:true}
+      //{provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi:true}
     ],
   exports: [
   ],

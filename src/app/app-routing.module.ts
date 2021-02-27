@@ -18,6 +18,9 @@ const routes: Routes = [
   {
     path: 'characters', loadChildren: () => import('./characters/characters.module').then(m => m.CharactersModule),
     canActivate: [CanUserGuard]
+  },
+  { path: 'comics', loadChildren: () => import('./comics/comics.module').then(m => m.ComicsModule),
+    canActivate: [CanUserGuard]
   }
 ];
 
