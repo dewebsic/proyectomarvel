@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
             });
 
         }else{
-
           //redirect
           this.router.navigate(['/login/verification-email']).then(resp => {
           }).catch(err => {

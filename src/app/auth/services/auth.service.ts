@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {first, switchMap} from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 import {auth} from 'firebase/app';
 import {Observable, of} from 'rxjs';
 import {User} from '../../shared/interfaces/user';
@@ -25,17 +25,14 @@ export class AuthService  extends RoleValidator{
         return of(null);
       })
     );
-
   }
 
 
-  async login(email: string, password: string): Promise<User> {
+  public async login(email: string, password: string): Promise<User> {
 
     try{
 
       const {user} =  await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      await this.updateUserData(user);
-
       return user;
 
     }catch (err){
@@ -44,17 +41,19 @@ export class AuthService  extends RoleValidator{
 
   }
 
-  async register(email: string, password: string):Promise<any> {
+  public async register(email: string, password: string,name:string):Promise<any> {
 
     try{
-       await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+
+      return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+
       }catch (err){
         console.error('error ', err);
       }
 
   }
 
-  async logout() {
+  public async logout() {
 
     try {
 
@@ -67,11 +66,11 @@ export class AuthService  extends RoleValidator{
 
   }
 
-  async sendVerificationEmail():Promise<void> {
+  public async sendVerificationEmail():Promise<void> {
     return (await this.afAuth.auth.currentUser).sendEmailVerification();
   }
 
-  async resetPassword(email:string):Promise<void> {
+  public async resetPassword(email:string):Promise<void> {
 
     try{
         return this.afAuth.auth.sendPasswordResetEmail(email);
@@ -80,7 +79,7 @@ export class AuthService  extends RoleValidator{
     }
   }
 
-  async loginGoogle(): Promise<User> {
+  public async loginGoogle(): Promise<User> {
 
       try{
 
@@ -93,7 +92,7 @@ export class AuthService  extends RoleValidator{
       }
   }
 
-  private async updateUserData(user:User) {
+  public async updateUserData(user:User) {
 
     const userRef: AngularFirestoreDocument<User> =
         await this.fireStore.doc(`users/${user.uid}`);

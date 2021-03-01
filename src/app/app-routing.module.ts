@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CanUserGuard} from './auth/guards/can-user.guard';
 import {SplashScreenComponent} from './splash-screen/components/splash-screen.component';
+import {CanInvitedGuard} from './auth/guards/can-invited.guard';
 
 const routes: Routes = [
   { path:'', redirectTo:'/home', pathMatch:'full'},
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
   {
-    path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule)
+    path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule),
+    canActivate:[CanInvitedGuard]
   },
   {
     path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule)
@@ -22,7 +24,9 @@ const routes: Routes = [
   { path: 'comics', loadChildren: () => import('./comics/comics.module').then(m => m.ComicsModule),
     canActivate: [CanUserGuard]
   },
-  { path: 'creators', loadChildren: () => import('./creators/creators.module').then(m => m.CreatorsModule) },
+  { path: 'creators', loadChildren: () => import('./creators/creators.module').then(m => m.CreatorsModule),
+    canActivate: [CanUserGuard]
+  },
 ];
 
 @NgModule({

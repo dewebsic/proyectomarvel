@@ -7,10 +7,10 @@
       <span class="bangers">{{character.name | uppercase}}</span>
     </div>
     <div class="row">
-      <div class="col-md-5 avatar">
+      <div class="col-md-5 col-sm-12 col-xs-12 avatar">
         <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}"  alt="{{character.name}}">
       </div>
-      <div class="col-md-7">
+      <div class="col-md-7 col-sm-12 col-xs-12">
         <h4 class="text-danger">Description</h4>
          <p *ngIf="character.description else noDescription">{{character.description}}</p>
         <ng-template #noDescription>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col-md-6">
+      <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="card bg-dark p-4 card-info">
           <div class="card-title mt-2"><h3 class="text-white">Comics Appearances</h3></div>
           <div class="card-body text-white ">
@@ -34,7 +34,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="card bg-white p-4 card-info">
           <div class="card-title mt-2"> <h3 class="text-danger">Series Appearances</h3></div>
           <div class="card-body">
@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="card bg-white p-4 card-info mt-4 mb-4">
           <div class="card-title mt-2"><h3 class="text-danger">Stories Appearances</h3></div>
           <div class="card-body">
@@ -54,7 +54,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="card bg-dark p-4 card-info mt-4 mb-4">
           <div class="card-title mt-2"><h3 class="text-white">Events Appearances</h3></div>
           <div class="card-body text-white ">

@@ -13,10 +13,13 @@ export class RegisterComponent implements OnInit {
 
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+  get name() { return this.registerForm.get('name')}
   get email() { return this.registerForm.get('email')}
   get password() { return this.registerForm.get('password') }
 
   registerForm = new FormGroup({
+    name: new FormControl('',
+      [Validators.required,Validators.minLength(3)]),
     email: new FormControl('',
       [Validators.required,Validators.pattern(this.emailPattern)]),
     password: new FormControl('',
@@ -32,16 +35,19 @@ export class RegisterComponent implements OnInit {
     //registro de usuario
     this.authService.register(
       this.registerForm.value.email,
-      this.registerForm.value.password
+      this.registerForm.value.password,
+      this.registerForm.value.name
     ).then(resp => {
 
       //envio de email de verificación
       this.authService.sendVerificationEmail().then(resp => {
-
-          this.message('registrado correctamente',true);
-
           //redirect
           this.router.navigate(['/home']).then(resp => {
+            this.authService.logout().then(r => {
+              this.message('registrado correctamente',true);
+            }).catch(err => {
+              console.log('error->', err)
+            });
           }).catch(err => {
             this.message('error',false);
             console.log('error->', err)

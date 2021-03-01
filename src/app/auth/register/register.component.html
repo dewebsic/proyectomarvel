@@ -8,6 +8,18 @@
         <h2 class="text-center text-black-50"> Register</h2>
         <form [formGroup]="registerForm" (ngSubmit)="onRegister()" >
           <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control"  formControlName="name"/>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-warning">
+              <div *ngIf="name.errors.required">
+                Required
+              </div>
+              <div *ngIf="name.errors.minlength">
+                minimum 3 digits
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
             <label>Email</label>
             <input type="email" class="form-control"  formControlName="email"/>
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-warning">
