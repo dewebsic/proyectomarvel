@@ -1,0 +1,70 @@
+.banner{
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 300px);
+  background-color: #F5F5F5;
+  background-size: cover;
+  background-position: center;
+  transition: all .1s ease-in-out;
+  background-image: url(https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+  animation: banner 28s infinite linear;
+}
+
+.banner-content{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background-color: rgba(0,22,40,.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.banner-content h1 {
+  margin: 0;
+  padding: 0 0 30px;
+  font-size: 40px;
+  text-align: center;
+}
+.banner-content a {
+  text-decoration: none;
+  color: #fff;
+  padding: 9px 20px;
+  border: 1px solid #fff;
+  text-transform: uppercase;
+  transition: all .3s ease-in-out;
+}
+.banner-content a:hover{
+  background-color: #fff;
+  cursor: pointer;
+  color:#333;
+}
+
+@keyframes banner {
+    0%{
+      background-image: url(https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+    }
+    25%{
+      background-image: url(https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+    }
+    26%{
+      background-image: url(https://www.enjpg.com/img/2020/marvel-2-scaled.jpg);
+    }
+    50%{
+      background-image: url(https://www.enjpg.com/img/2020/marvel-2-scaled.jpg);
+    }
+    51%{
+      background-image: url(https://www.wallpapertip.com/wmimgs/35-353320_1920x1080-avengers-infinity-war-2018-movie-data-avengers.jpg);
+    }
+    75%{
+      background-image: url(https://www.wallpapertip.com/wmimgs/35-353320_1920x1080-avengers-infinity-war-2018-movie-data-avengers.jpg);
+    }
+    76%{
+      background-image: url(https://images3.alphacoders.com/104/thumb-1920-1042294.jpg);
+    }
+    100%{
+      background-image: url(https://images3.alphacoders.com/104/thumb-1920-1042294.jpg);
+    }
+}

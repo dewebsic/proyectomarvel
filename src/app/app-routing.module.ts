@@ -5,7 +5,6 @@ import {SplashScreenComponent} from './splash-screen/components/splash-screen.co
 import {CanInvitedGuard} from './auth/guards/can-invited.guard';
 
 const routes: Routes = [
-  { path:'', redirectTo:'/home', pathMatch:'full'},
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
   {
     path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule),
@@ -27,6 +26,7 @@ const routes: Routes = [
   { path: 'creators', loadChildren: () => import('./creators/creators.module').then(m => m.CreatorsModule),
     canActivate: [CanUserGuard]
   },
+  { path:'', redirectTo:'/home', pathMatch:'full'}
 ];
 
 @NgModule({
