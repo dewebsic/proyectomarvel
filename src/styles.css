@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Marvel', "Helvetica Neue", sans-serif;
-background-color: #F0F0F0;}
+
+body {
+  margin: 0; font-family: 'Marvel', "Helvetica Neue", sans-serif;
+    background-color: #f1f1f1;
+}
 
 .card-border{
     border-bottom: 1px outset #6c6c6c;
