@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
-import Swal from 'sweetalert2'
 import {Router} from '@angular/router';
 import {User} from '../../shared/interfaces/user';
+import {MustMatch} from '../helpers/must-match.validator';
+import { MessageSwal } from 'src/app/shared/helpers/messageSwal';
 
 @Component({
   selector: 'app-register',
@@ -12,22 +13,33 @@ import {User} from '../../shared/interfaces/user';
 })
 export class RegisterComponent implements OnInit {
 
+  public registerForm: FormGroup;
+
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   get name() { return this.registerForm.get('name')}
   get email() { return this.registerForm.get('email')}
   get password() { return this.registerForm.get('password') }
+  get confirmPassword() { return this.registerForm.get('confirmPassword')}
 
-  registerForm = new FormGroup({
-    name: new FormControl('',
-      [Validators.required,Validators.minLength(3)]),
-    email: new FormControl('',
-      [Validators.required,Validators.pattern(this.emailPattern)]),
-    password: new FormControl('',
-      [Validators.required,Validators.minLength(6)])
-  });
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
 
-  constructor(private authService: AuthService,private router: Router) { }
+    this.registerForm = this.formBuilder.group({
+        name: new FormControl('',
+          [Validators.required,Validators.minLength(3)]),
+        email: new FormControl('',
+          [Validators.required,Validators.pattern(this.emailPattern)]),
+        password: new FormControl('',
+          [Validators.required,Validators.minLength(6)]),
+        confirmPassword: new FormControl('', Validators.required)
+      },{
+        validator: MustMatch('password','confirmPassword')
+      });
+  }
 
   ngOnInit() {}
 
@@ -47,47 +59,38 @@ export class RegisterComponent implements OnInit {
         photoURL: resp.photoURL,
         role: 'SUBSCRIBER'
       };
-      this.authService.updateUserData(newUser).then(resp => {
-          //envio de email de verificación
-          this.authService.sendVerificationEmail().then(resp => {
-            //redirect
-            this.router.navigate(['/home']).then(resp => {
-              this.authService.logout().then(r => {
-                this.message('registrado correctamente',true);
-              }).catch(err => {
-                console.log('error->', err)
-              });
-            }).catch(err => {
-              this.message('error',false);
-              console.log('error->', err)
-            });
-      });
-
-
-      }).catch(err => {
-
-        this.message('error',false);
-        console.log(err);
-
-      });
-
+      this.userUpdate(newUser);
     }).catch(err => {
-      this.message('error',false);
+      MessageSwal('error',false);
       console.log(err);
     });
   }
 
-  /**
-   *
-   * METODO PARA MOSTRAR UN MENSAJE EN MODAL
-   */
-  message(message: string,icon: boolean) {
 
-    if(icon){
-      Swal.fire(message, 'Aceptar!', 'success').then(r => {});
-    }else{
-      Swal.fire(message, 'Aceptar!', 'warning').then(r => {});
-    }
+  private userUpdate(user: User){
 
+    this.authService.updateUserData(user).then(resp => {
+      //envio de email de verificación
+      this.authService.sendVerificationEmail().then(resp => {
+        //redirect
+        this.router.navigate(['/home']).then(resp => {
+          this.authService.logout().then(r => {
+            MessageSwal('registrado correctamente',true);
+          }).catch(err => {
+            console.log('error->', err)
+          });
+        }).catch(err => {
+          MessageSwal('error',false);
+          console.log('error->', err)
+        });
+      });
+
+
+    }).catch(err => {
+
+      MessageSwal('error',false);
+      console.log(err);
+
+    });
   }
 }

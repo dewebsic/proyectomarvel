@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AuthService} from '../services/auth.service';
-import Swal from "sweetalert2";
 import {Router} from '@angular/router';
+import {MessageSwal} from '../../shared/helpers/messageSwal';
 
 @Component({
   selector: 'app-login',
@@ -24,11 +24,13 @@ export class LoginComponent implements OnInit {
       [Validators.required,Validators.minLength(6)])
   });
 
-  constructor(private authService: AuthService,private router: Router) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {}
 
   onLogin(){
+
     this.authService.login(
       this.loginForm.value.email,
       this.loginForm.value.password
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
             //redirect
             this.router.navigate(['/home']).then(resp => {
             }).catch(err => {
-              this.message('error',false);
+              MessageSwal('error',false);
               console.log('error->', err)
             });
 
@@ -51,7 +53,7 @@ export class LoginComponent implements OnInit {
           //redirect
           this.router.navigate(['/login/verification-email']).then(resp => {
           }).catch(err => {
-            this.message('error',false);
+            MessageSwal('error',false);
             console.log('error->', err)
           });
 
@@ -59,7 +61,7 @@ export class LoginComponent implements OnInit {
       }
 
     }).catch(err => {
-      this.message('error',false);
+      MessageSwal('error',false);
       console.log('error->', err);
     })
   }
@@ -71,25 +73,12 @@ export class LoginComponent implements OnInit {
         //redirect
         this.router.navigate(['/home']).then(resp => {
         }).catch(err => {
-          this.message('error',false);
+          MessageSwal('error',false);
           console.log('error->', err)
         });
 
       }).catch(err => {
           console.log('error->',err);
       });
-  }
-  /**
-   *
-   * METODO PARA MOSTRAR UN MENSAJE EN MODAL
-   */
-  message(message: string,icon: boolean) {
-
-    if(icon){
-      Swal.fire(message, 'Aceptar!', 'success').then(r => {});
-    }else{
-      Swal.fire(message, 'Aceptar!', 'warning').then(r => {});
-    }
-
   }
 }
