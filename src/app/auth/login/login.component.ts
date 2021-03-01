@@ -65,7 +65,8 @@ export class LoginComponent implements OnInit {
   }
 
   onGoogleLogin(){
-      this.authService.loginGoogle().then(resp => {
+
+    this.authService.loginGoogle().then(resp => {
 
         //redirect
         this.router.navigate(['/home']).then(resp => {

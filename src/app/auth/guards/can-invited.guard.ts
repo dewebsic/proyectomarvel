@@ -18,9 +18,11 @@ export class CanInvitedGuard implements CanActivate {
             this.valida = true;
           }else{
             this.valida = false;
-            this.router.navigate(['/home']).then(resp => {}).catch(err => {
-              console.log('err->',err);
-            })
+            if(resp.emailVerified){
+              this.router.navigate(['/home']).then(resp => {}).catch(err => {
+                console.log('err->',err);
+              })
+            }
           }
       });
       return this.valida;

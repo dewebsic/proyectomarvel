@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import Swal from 'sweetalert2'
 import {Router} from '@angular/router';
+import {User} from '../../shared/interfaces/user';
 
 @Component({
   selector: 'app-register',
@@ -36,22 +37,32 @@ export class RegisterComponent implements OnInit {
     this.authService.register(
       this.registerForm.value.email,
       this.registerForm.value.password,
-      this.registerForm.value.name
     ).then(resp => {
 
-      //envio de email de verificación
-      this.authService.sendVerificationEmail().then(resp => {
-          //redirect
-          this.router.navigate(['/home']).then(resp => {
-            this.authService.logout().then(r => {
-              this.message('registrado correctamente',true);
+      const newUser: User = {
+        uid: resp.uid,
+        email: resp.email,
+        emailVerified : resp.emailVerified,
+        displayName : name,
+        photoURL: resp.photoURL,
+        role: 'SUBSCRIBER'
+      };
+      this.authService.updateUserData(newUser).then(resp => {
+          //envio de email de verificación
+          this.authService.sendVerificationEmail().then(resp => {
+            //redirect
+            this.router.navigate(['/home']).then(resp => {
+              this.authService.logout().then(r => {
+                this.message('registrado correctamente',true);
+              }).catch(err => {
+                console.log('error->', err)
+              });
             }).catch(err => {
+              this.message('error',false);
               console.log('error->', err)
             });
-          }).catch(err => {
-            this.message('error',false);
-            console.log('error->', err)
-          });
+      });
+
 
       }).catch(err => {
 

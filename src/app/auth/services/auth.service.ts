@@ -33,6 +33,19 @@ export class AuthService  extends RoleValidator{
     try{
 
       const {user} =  await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+
+      this.fireStore.doc<User>(`users/${user.uid}`).valueChanges().subscribe(resp => {
+        const updateUser : User = {
+          uid: resp.uid,
+          email: resp.email,
+          emailVerified : user.emailVerified,
+          displayName : resp.displayName,
+          photoURL: resp.photoURL,
+          role: 'SUBSCRIBER'
+        }
+        this.updateUserData(updateUser);
+      });
+
       return user;
 
     }catch (err){
@@ -41,12 +54,12 @@ export class AuthService  extends RoleValidator{
 
   }
 
-  public async register(email: string, password: string,name:string):Promise<any> {
+  public async register(email: string, password: string):Promise<any> {
 
     try{
 
-      return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
-
+       let result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+       return result.user;
       }catch (err){
         console.error('error ', err);
       }
@@ -58,7 +71,6 @@ export class AuthService  extends RoleValidator{
     try {
 
       await this.afAuth.auth.signOut();
-      localStorage.clear();
 
     } catch (err) {
       console.error('error', err);
@@ -84,9 +96,17 @@ export class AuthService  extends RoleValidator{
       try{
 
         const { user } = await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-        await this.updateUserData(user);
 
-        return user;
+        const newUser: User = {
+          uid: user.uid,
+          email: user.email,
+          emailVerified : user.emailVerified,
+          displayName : user.displayName,
+          photoURL: user.photoURL,
+          role: 'SUBSCRIBER'
+        };
+        await this.updateUserData(newUser);
+        return newUser;
       }catch (error){
         console.log('error->',error);
       }
@@ -96,17 +116,7 @@ export class AuthService  extends RoleValidator{
 
     const userRef: AngularFirestoreDocument<User> =
         await this.fireStore.doc(`users/${user.uid}`);
-
-      const data: User = {
-        uid: user.uid,
-        email: user.email,
-        emailVerified : user.emailVerified,
-        displayName : user.displayName,
-        photoURL: user.photoURL,
-        role: 'SUBSCRIBER'
-      }
-
-      return userRef.set(data,{merge:true});
+      return userRef.set(user,{merge:true});
 
   }
 }
