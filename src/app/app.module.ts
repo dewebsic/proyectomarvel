@@ -20,13 +20,15 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import {MatDialogModule} from '@angular/material';
+import { SplashScreenComponent } from './splash-screen/components/splash-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SplashScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -43,10 +45,11 @@ import {MatDialogModule} from '@angular/material';
     MatDialogModule
   ],
   providers: [CanUserGuard,AngularFirestore,
-      //{provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi:true}
+      {provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi:true}
     ],
-  exports: [
-  ],
+    exports: [
+        SplashScreenComponent
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

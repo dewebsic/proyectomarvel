@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CanUserGuard} from './auth/guards/can-user.guard';
-import {DetailCharacterComponent} from './characters/components/detail-character/detail-character.component';
+import {SplashScreenComponent} from './splash-screen/components/splash-screen.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'/home', pathMatch:'full'},
@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'comics', loadChildren: () => import('./comics/comics.module').then(m => m.ComicsModule),
     canActivate: [CanUserGuard]
   },
-  { path: 'creators', loadChildren: () => import('./creators/creators.module').then(m => m.CreatorsModule) }
+  { path: 'creators', loadChildren: () => import('./creators/creators.module').then(m => m.CreatorsModule) },
 ];
 
 @NgModule({

@@ -1,0 +1,78 @@
+.app-splash-screen {
+  position: fixed;
+  background-image: radial-gradient(#730801,#1f0100);
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+  height: 100%;
+  z-index: 100;
+  transition: left 0.5s;
+  overflow: hidden;
+}
+#marvel{
+  color:transparent;
+  font-size: 205vh;
+  -webkit-text-stroke: 2px #000;
+  letter-spacing: -2vh;
+  opacity: 0;
+  animation: marvel 6s ease 2s forwards;
+}
+
+@keyframes marvel {
+  0% {
+    opacity: 0;
+    font-size: 205vh;
+    color: rgba(255, 255, 255, 0);
+    -webkit-text-stroke-color: #000;
+  }
+
+  20% {
+    opacity: 1;
+    color: rgba(255, 255, 255, 0);
+    -webkit-text-stroke-color: #000;
+  }
+  60% {
+    color: rgba(255, 255, 255, 0.5);
+    -webkit-text-stroke-color: #000;
+  }
+  100% {
+    opacity: 1;
+    font-size: 30vh;
+    color: rgba(255, 255, 255, 1);
+    -webkit-text-stroke-color: transparent;
+  }
+}
+
+.app-splash-screen #bg{
+    position:fixed;
+    top:0;
+    right:0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    background-image: url('../../../assets/images/marvel/1.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    z-index:1;
+    transform: scale(1.8);
+    animation: hideBag 9s ease 0s forwards;
+}
+
+@keyframes hideBag {
+  0%{
+    opacity: 1;
+  }
+  60%{
+    opacity: 0.5;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
