@@ -6,8 +6,7 @@ import {ComicService} from './services/comic.service';
 
 @Component({
   selector: 'app-comics',
-  templateUrl: './comics.component.html',
-  styleUrls: ['./comics.component.css']
+  templateUrl: './comics.component.html'
 })
 export class ComicsComponent implements OnInit, AfterContentInit{
 

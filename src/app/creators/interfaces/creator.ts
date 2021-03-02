@@ -1,3 +1,6 @@
+import {Url} from '../../shared/interfaces/url';
+import {Item} from '../../shared/interfaces/item';
+
 export interface Creator {
   "id": number,
   "firstName":  string,
@@ -7,7 +10,7 @@ export interface Creator {
   "fullName":  string,
   "modified": Date,
   "resourceURI": string,
-  "urls": Url[],
+  "urls": UrlCreator[],
   "thumbnail": {
     "path": string,
     "extension": string
@@ -16,36 +19,29 @@ export interface Creator {
     "available": number,
     "returned": number,
     "collectionURI": string,
-    "items": Item[]
+    "items": ItemCreator[]
   },
   "stories": {
     "available": number,
     "returned": number,
     "collectionURI": string,
-    "items": Item[]
+    "items": ItemCreator[]
   },
   "comics": {
     "available": number,
     "returned": number,
     "collectionURI": string,
-    "items": Item[]
+    "items": ItemCreator[]
   },
   "events": {
     "available": number,
     "returned": number,
     "collectionURI": string,
-    "items": Item[]
+    "items": ItemCreator[]
   }
 
 }
 
-export interface Item {
-  "resourceURI": string,
-  "name": string,
-  "type"?: string
-}
+export interface ItemCreator extends Item{}
 
-export interface Url{
-  "type": string,
-  "url": string
-}
+export interface UrlCreator extends Url{}

@@ -6,8 +6,7 @@ import {CreatorService} from './services/creator.service';
 
 @Component({
   selector: 'app-creators',
-  templateUrl: './creators.component.html',
-  styleUrls: ['./creators.component.css']
+  templateUrl: './creators.component.html'
 })
 export class CreatorsComponent implements OnInit, AfterContentInit{
 

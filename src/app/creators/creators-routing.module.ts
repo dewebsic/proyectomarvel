@@ -1,6 +1,12 @@
+/**
+ *   MODULES
+ */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+/**
+ *  COMPONENTS
+ */
 import {CreatorsComponent} from './creators.component';
 import {DetailCreatorComponent} from './components/detail-creator/detail-creator.component';
 

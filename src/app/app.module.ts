@@ -1,9 +1,14 @@
+import { AppRoutingModule } from './app-routing.module';
+import {environment} from '../environments/environment';
+import {AngularFirestore} from '@angular/fire/firestore';
+
+/**
+ *  MODULES
+ */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
-
-import { AppComponent } from './app.component';
+import {MatDialogModule, MatProgressSpinnerModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import {AngularFireModule} from '@angular/fire';
@@ -11,15 +16,15 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {HomeModule} from './home/home.module';
+
+/**
+ *  COMPONENTS
+ */
+import { AppComponent } from './app.component';
 import {NavbarComponent} from './shared/components/navbar/navbar.component';
-import {environment} from '../environments/environment';
-import {CanUserGuard} from './auth/guards/can-user.guard';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {NgxSpinnerModule} from 'ngx-spinner';
+import { SplashScreenComponent } from './components/splash-animation/splash-screen.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import {MatDialogModule, MatProgressSpinnerModule} from '@angular/material';
-import { SplashScreenComponent } from './splash-screen/components/splash-screen.component';
 
 @NgModule({
   declarations: [
@@ -40,12 +45,10 @@ import { SplashScreenComponent } from './splash-screen/components/splash-screen.
     AngularFireAuthModule,
     HttpClientModule,
     FlexLayoutModule,
-    NgxSpinnerModule,
     MatDialogModule,
     MatProgressSpinnerModule
   ],
-  providers: [CanUserGuard,AngularFirestore,
-    ],
+  providers: [AngularFirestore],
     exports: [
         SplashScreenComponent
     ],

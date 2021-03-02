@@ -1,5 +1,12 @@
+/**
+ *  MODULES
+ */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+/**
+ *  COMPONENTS
+ */
 import { CharactersComponent } from './characters.component';
 import {DetailCharacterComponent} from './components/detail-character/detail-character.component';
 

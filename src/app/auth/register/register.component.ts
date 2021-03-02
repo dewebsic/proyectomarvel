@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
         //redirect
         this.router.navigate(['/home']).then(resp => {
           this.authService.logout().then(r => {
-            MessageSwal('registrado correctamente',true);
+            MessageSwal('Registered Successfully,Email sent,check your inbox',true);
           }).catch(err => {
             console.log('error->', err)
           });

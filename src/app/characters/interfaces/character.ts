@@ -1,10 +1,11 @@
+import {Item} from '../../shared/interfaces/item';
+import {Url} from '../../shared/interfaces/url';
+
 export interface Character {
   "id": number;
   "name": string,
   "description": string,
-  "modified": Date;
-  "resourceURI": string,
-  "urls": Url[],
+  "urls": UrlCharacter[],
   "thumbnail": {
     "path": string,
     "extension": string
@@ -35,15 +36,7 @@ export interface Character {
   }
 }
 
-export interface ItemCharacter{
+export interface ItemCharacter extends Item{}
 
-  "resourceURI": string,
-  "name": string,
-  "type"? : string
-}
-
-export interface Url{
-  "type":string,
-  "url": string,
-}
+export interface UrlCharacter extends Url{}
 

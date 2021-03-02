@@ -1,14 +1,21 @@
+/**
+ *  MODULES
+ */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MAT_DIALOG_DATA, MatButtonModule, MatCardModule, MatDialogModule} from '@angular/material';
-
+import {ReactiveFormsModule} from '@angular/forms';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import { CreatorsRoutingModule } from './creators-routing.module';
+
+/**
+ *  COMPONENTS
+ */
 import { CreatorsComponent } from './creators.component';
 import { CreatorComponent } from './components/creator/creator.component';
 import { DetailCreatorComponent } from './components/detail-creator/detail-creator.component';
 import { DialogCreatorComponent } from './components/dialog-creator/dialog-creator.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import {FlexLayoutModule} from '@angular/flex-layout';
+
 
 
 

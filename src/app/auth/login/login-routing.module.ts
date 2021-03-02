@@ -1,6 +1,12 @@
+/**
+ *  MODULES
+ */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+/**
+ *  COMPONENTS
+ */
 import { LoginComponent } from './login.component';
 import {SendEmailComponent} from './components/send-email/send-email.component';
 

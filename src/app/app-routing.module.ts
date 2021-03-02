@@ -1,9 +1,18 @@
+/**
+ *  MODULES
+ */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+/**
+ *  GUARDS
+ */
 import {CanUserGuard} from './auth/guards/can-user.guard';
-import {SplashScreenComponent} from './splash-screen/components/splash-screen.component';
 import {CanInvitedGuard} from './auth/guards/can-invited.guard';
 
+/**
+ *  ROUTES
+ */
 const routes: Routes = [
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
   {

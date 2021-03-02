@@ -1,3 +1,6 @@
+import {Item} from '../../shared/interfaces/item';
+import {Url} from '../../shared/interfaces/url';
+
 export interface Comic {
   "id": number,
   "digitalId": number,
@@ -6,22 +9,8 @@ export interface Comic {
   "variantDescription": string,
   "description": string,
   "modified": Date,
-  "isbn": string,
-  "upc": string,
-  "diamondCode": string,
-  "ean": string,
-  "issn": string,
-  "format": string,
-  "pageCount": string,
-  "textObjects": [
-    {
-      "type": "string",
-      "language": "string",
-      "text": "string"
-    }
-  ],
   "resourceURI": "string",
-  "urls": Url[],
+  "urls": UrlComic[],
   "series": {
     "resourceURI": "string",
     "name": "string"
@@ -30,12 +19,6 @@ export interface Comic {
   "collections": Collection[]
   "collectedIssues": Collection[],
   "dates": DateComic[],
-  "prices": [
-    {
-      "type": "string",
-      "price": "float"
-    }
-  ],
   "thumbnail": {
     "path": "string",
     "extension": "string"
@@ -50,19 +33,19 @@ export interface Comic {
     "available": "int",
     "returned": "int",
     "collectionURI": "string",
-    "items": Item[]
+    "items": ItemComic[]
   },
   "stories": {
     "available": "int",
     "returned": "int",
     "collectionURI": "string",
-    "items": Item[]
+    "items": ItemComic[]
   },
   "events": {
     "available": "int",
     "returned": "int",
     "collectionURI": "string",
-    "items": Item[]
+    "items": ItemComic[]
   }
 }
 
@@ -71,16 +54,11 @@ export interface Collection {
   "name": string
 }
 
-export interface Item {
-  "resourceURI": string,
-  "name": string,
+export interface ItemComic extends Item{
   "role"?: string
 }
 
-export interface Url {
-  "type": string,
-  "url": string
-}
+export interface UrlComic extends Url{}
 
 export interface DateComic{
   "type": string,

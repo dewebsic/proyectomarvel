@@ -7,7 +7,7 @@ import {AuthService} from '../services/auth.service';
 })
 export class CanInvitedGuard implements CanActivate {
 
-  public valida: boolean = false;
+  public validate: boolean = false;
 
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -15,9 +15,9 @@ export class CanInvitedGuard implements CanActivate {
   canActivate():boolean {
       this.authService.user$.subscribe(resp => {
           if(resp == null){
-            this.valida = true;
+            this.validate = true;
           }else{
-            this.valida = false;
+            this.validate = false;
             if(resp.emailVerified){
               this.router.navigate(['/home']).then(resp => {}).catch(err => {
                 console.log('err->',err);
@@ -25,6 +25,6 @@ export class CanInvitedGuard implements CanActivate {
             }
           }
       });
-      return this.valida;
+      return this.validate;
   }
 }
