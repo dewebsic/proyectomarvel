@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CharactersService} from '../../services/characters.service';
 import { MatDialog } from '@angular/material';
@@ -11,7 +11,7 @@ import {AllCharacters} from '../../interfaces/all-characters';
   templateUrl: './detail-character.component.html',
   styleUrls: ['./detail-character.component.css']
 })
-export class DetailCharacterComponent implements OnInit, AfterContentInit{
+export class DetailCharacterComponent implements AfterViewInit{
 
   public character: Observable<AllCharacters[] | null>
   private id: number;
@@ -24,10 +24,8 @@ export class DetailCharacterComponent implements OnInit, AfterContentInit{
     });
   }
 
-  ngOnInit() {
-      this.character = this.charactersService.getCharacter(this.id);
-  }
-  ngAfterContentInit() {
+  ngAfterViewInit() {
+    this.character = this.charactersService.getCharacter(this.id);
     this.openDialog();
   }
 
